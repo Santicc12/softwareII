@@ -23,6 +23,12 @@ public class UserController {
     public UserRest createUser(@RequestBody UserDetailRequestModel userDetailRequestModel){
         //return "Creando Usuarios";
         return null;
+        
+
+
+
+
+
 
     }
 }
