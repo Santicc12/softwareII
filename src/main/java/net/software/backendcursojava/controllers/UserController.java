@@ -1,5 +1,7 @@
 package net.software.backendcursojava.controllers;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,11 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.software.backendcursojava.Model.request.UserDetailRequestModel;
 import net.software.backendcursojava.Model.responses.UserRest;
+import net.software.backendcursojava.Shared.dto.UserDTO;
+import net.software.backendcursojava.services.UserServiceInterface;
 
 @RestController
 @RequestMapping("/users") //localhost/users:8080/users
 
 public class UserController {
+
+    @Autowired
+    UserServiceInterface userService;
+
 
     @GetMapping //Obtener, Consultar informacion.
     public String getUser(){
@@ -20,9 +28,20 @@ public class UserController {
         
     }
     @PostMapping //Creando Informacion
-    public UserRest createUser(@RequestBody UserDetailRequestModel userDetailRequestModel){
-        //return "Creando Usuarios";
-        return null;
+    public UserRest createUser(@RequestBody UserDetailRequestModel userDetails){
+        
+        UserRest userToReturn = new UserRest();
+
+        UserDTO userDTO = new UserDTO();
+
+        BeanUtils.copyProperties(userDetails, userDTO);
+
+        UserDTO createdUser = userService.createUser(userDTO);
+
+        BeanUtils.copyProperties(createdUser, userToReturn);
+
+
+        return userToReturn;
         
 
 
