@@ -1,6 +1,7 @@
 package net.software.backendcursojava.controllers;
 
-import org.apache.commons.beanutils.BeanUtils;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class UserController {
         
     }
     @PostMapping //Creando Informacion
-    public UserRest createUser(@RequestBody UserDetailRequestModel userDetails){
+    public UserRest createUser(@RequestBody UserDetailRequestModel userDetails) {
         
         UserRest userToReturn = new UserRest();
 
@@ -43,9 +44,6 @@ public class UserController {
 
         return userToReturn;
         
-
-
-
 
 
 

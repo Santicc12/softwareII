@@ -8,11 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name = "users")
-
 public class UserEntity implements Serializable{
 
     private static final Long serialVersionUID = 1L;
-
 
     @Id
     @GeneratedValue
